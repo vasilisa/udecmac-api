@@ -4,10 +4,13 @@ from models.base_object import BaseObject
 
 # These are the custom models to import
 from models.participants_question_data import ParticipantsQuestionData
+from models.task import Task 
+
 
 
 __all__ = (
     'ApiErrors',
     'BaseObject',
-    'ParticipantsQuestionData'
+    'ParticipantsQuestionData',
+    'Task' 
 )

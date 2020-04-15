@@ -9,8 +9,7 @@ class ParticipantsQuestionData(BaseObject, Model):
         This is the table where we put the collected QUESTIONNAIRE data from the participants in the RLVARTASK: this only contains the responses but not the question content which is stored in the JS object on the server. 
         
     '''
-    id = Column(Integer, primary_key=True)
-
+    id              = Column(Integer, primary_key=True)
     participant_id  = Column(BigInteger,nullable=False)
     prolific_id     = Column(VARCHAR(length=200)) # the date at which the questionnaire has been answered   
     date            = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
@@ -32,7 +31,7 @@ class ParticipantsQuestionData(BaseObject, Model):
     def get_prolific_id(self):
         return str(self.prolific_id)
 
-    def get_prolific_id(self):
+    def get_study_id(self):
         return str(self.study_id)
 
     def get_longit_id(self):

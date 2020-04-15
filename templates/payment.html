@@ -1,0 +1,129 @@
+<!doctype html>
+
+<html>
+<link rel="shortcut icon" href="static/images/flavicon.ico">
+<link rel=stylesheet href="static/questTask.css/" type="text/css" media="screen">
+<head>
+	<title>End of Experiment</title>
+			<script src="static/jquery-min.js" type="text/javascript">
+					document.getElementById("validate").onclick = function () {
+        			location.href =  "https://app.prolific.co/submissions/complete?cc=" + participant_info.study_id;  
+        	};
+        	
+			</script>
+</head>
+
+<body>
+	<div style="text-align: center;" id="thanks">
+		<h1>Thanks for your time!</h1>
+
+		<div id="debriefingtext">
+			<p style="text-align: center; font-size: 140%" >Thanks again for your participation in our study!</p>
+
+			<p> 
+				Please, press the button 'VALIDATE' below to confirm your participation on Prolific.
+			</p>
+
+			<p> Press 'leave this page' if prompted by your browser. Thank you!</p>
+
+			<p style="text-align: justify; font-size: 100%" >If you have any difficulty in receiving your fixed or bonus payement, please contact us via Prolific. If this happens - don’t worry - your data have been saved and you will be paid!</p>
+
+		<p>If you have a concern about any aspect of this study and would like to get in touch with a researcher directly, please contact:</p>
+		<center>
+
+		<table style="width:80%">
+			<tr>
+				<th align="left">Alisa Loosen <br>
+					<td><strong>Email:</strong>a.loosen.17@ucl.ac.uk<br>
+					(Researcher)</th>
+				<th align="left">Dr Tobias Hauser<br>
+					<td><strong>Email:</strong>a.loosen.17@ucl.ac.uk<br>
+					(Principal Investigator)</th>
+			</tr>
+		</table>
+		<tr>
+			<td><strong>Postal address:</strong><br>
+			Developmental Computational Psychiatry Lab, <br>
+			Max Planck Center for Computational Psychiatry, <br>
+			Univeristy College London,<br>
+			10-12 Russel Square, 
+			WC1B 5EH
+			London, UK.  
+			</td>
+			</tr>
+		</center>
+		<div>
+		<p></p>	
+		<center>
+			<button class="float-right submit-button" id="validate">VALIDATE</button>
+		</center>
+		</div>
+	</div>
+</body>
+
+</html>
+
+
+
+<script  type="text/javascript">
+
+	function parseURL(url) {
+    		var parser = document.createElement('a'),
+        	searchObject = {},
+        	queries, split, i;
+    		// Let the browser do the work
+    		parser.href = url;
+    		// Convert query string to object
+    		queries = parser.search.replace(/^\?/, '').split('&');
+    		for( i = 0; i < queries.length; i++ ) {
+        		split = queries[i].split('=');
+        		searchObject[split[0]] = split[1];
+    		}
+    	return {
+        	protocol: parser.protocol,
+        	host: parser.host,
+        	hostname: parser.hostname,
+        	port: parser.port,
+        	pathname: parser.pathname,
+        	search: parser.search,
+        	searchObject: searchObject,
+        	hash: parser.hash
+    	};
+		}
+
+		var url = parseURL(window.location.href); // full url = window.location.href
+
+		// Subject info: to propagate later 
+		var participant_info            = {}
+        participant_info.study_id       = url.searchObject['study_id'];
+
+
+        console.log('Participant INFO:',participant_info)
+        console.log('Study_id:',participant_info.study_id)
+
+        document.getElementById("validate").onclick = function () {
+        	location.href =  "https://app.prolific.co/submissions/complete?cc=" + participant_info.study_id;  
+        	};
+        	
+        
+
+	// function getUrlParams( prop ) {
+	//     var params = {};
+	//     var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
+	//     var definitions = search.split( '&' );
+
+	//     definitions.forEach( function( val, key ) {
+	//         var parts = val.split( '=', 2 );
+	//         params[ parts[ 0 ] ] = parts[ 1 ];
+	//     } );
+
+	//     return ( prop && prop in params ) ? params[ prop ] : params;
+	// };
+
+	// 	var study_id = getUrlParams();
+	// 		document.getElementById('study_id').innerHTML = study_id.study_id.toString();
+
+	// 	console.log(study_id)
+
+
+	</script>

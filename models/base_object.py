@@ -19,8 +19,8 @@ from sqlalchemy.exc import DataError, IntegrityError
 from models.api_errors import ApiErrors
 from models.db import db
 
-DUPLICATE_KEY_ERROR_CODE = '23505'
-NOT_FOUND_KEY_ERROR_CODE = '23503'
+DUPLICATE_KEY_ERROR_CODE    = '23505'
+NOT_FOUND_KEY_ERROR_CODE    = '23503'
 OBLIGATORY_FIELD_ERROR_CODE = '23502'
 
 
@@ -297,7 +297,6 @@ class BaseObject():
         except ValueError as ve:
             api_errors.addError(*BaseObject.restize_value_error(ve))
             raise api_errors
-
         if api_errors.errors.keys():
             raise api_errors
 
