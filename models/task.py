@@ -30,9 +30,8 @@ class Task(BaseObject, Model):
     debriefed       = Column(Boolean)
     datastring      = Column(Text, nullable=True) # Data for the task? 
     status          = Column(Integer, default = 1)
+    bonus           = Column(String(128), default = '0')  
     
-    
-
     def __init__(self, prolific_id, study_id, participant_id, longit_id): # self, hitid, ipaddress, assignmentid, workerid
         
         self.participant_id = participant_id # FOR DEBUG ONLY participant_id 
@@ -44,6 +43,9 @@ class Task(BaseObject, Model):
         self.codeversion    = CODE_VERSION
         self.debriefed      = False
         self.beginhit       = datetime.datetime.now()
+        self.bonus         = '0'
+
+
 
     def __repr__( self ):
         return "Subject(%s, %s, %r, %r, %s)" % (
@@ -78,6 +80,9 @@ class Task(BaseObject, Model):
     def status(datastring): 
         return str(self.datastring)
 
+    def bonus(datastring): 
+        return str(self.bonus)
+    
     def errors(self):
         errors = super(Task, self).errors()
         return errors

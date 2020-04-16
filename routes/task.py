@@ -5,6 +5,7 @@ from collections import OrderedDict
 import json
 import glob
 import datetime
+from os import path 
 from sqlalchemy.sql.expression import func
 
 
@@ -89,6 +90,16 @@ def quitter():
     datastring   = request.form['datastring']
     when         = request.form['when']
 
+    # this is different from the local storage system: we save csv in the temporary files that should then be transfered to 
+    # external cloud service because they would be araised once we redeploy the container! 
+    # check if directory exists first: 
+    if path.exists('quitters'): 
+        print ("directory Quitters exists:" + str(path.exists('quitters')))
+    else:
+        print ("Creating directory Quitters")
+        mkdir('quitters') 
+    
+
     datafile     = open('quitters/prolific_id'+prolific_id+'_'+study_id+'_'+when+'.csv', 'w')
     datafile.write(datastring)
     datafile.close()
@@ -135,11 +146,23 @@ def savedata():
 
     print("saving the data of subject {1} for study {0} in time point {2}".format(prolific_id,study_id,longit_id))
     
+    if path.exists('taskData'): 
+        print ("directory taskData exists:" + str(path.exists('taskData')))
+    else:
+        print ("Creating directory taskData")
+        mkdir('taskData') 
+    
     datafile = open('taskData/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
     datafile.write(datastring)
     datafile.close()
 
     # bonuses 
+    if path.exists('Payments'): 
+        print ("directory Payments exists:" + str(path.exists('Payments')))
+    else:
+        print ("Creating directory Payments")
+        mkdir('taskData') 
+    
     datafile2 = open('Payments/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
     datafile2.write(payment)
     datafile2.close()
@@ -156,8 +179,8 @@ def savedata():
         user.datastring = datastring
         user.status     = COMPLETED
         user.endhit     = datetime.datetime.now()
+        user.bonus      = payment # this is added to store the bonus information in the DB as well. 
         
-
         BaseObject.check_and_save(user)
 
         result = dict({"success": "yes"}) 

@@ -101,6 +101,13 @@ def mytest():
     result['test'] = 'ok'
     return jsonify(result), 200
 
+@app.route('/app',methods=['GET','POST'])
+def myapp():
+    result = dict()
+    result['content'] = os.listdir(".")  # returns list
+    return jsonify(result), 200
+
+
 @app.route('/<pagename>')
 def regularpage(pagename=None):
     
