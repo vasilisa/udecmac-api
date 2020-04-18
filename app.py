@@ -117,8 +117,12 @@ def regularpage(pagename=None):
 def myapp():
     cpath = os.getcwd()
     print ("The current working directory is %s" % cpath)
-    result = dict(os.listdir(cpath))
+    result = dict()
+    result['taskData'] = os.listdir('taskData/')
+    result['quitters'] = os.listdir('quitters/')
+    # Add Goolge Cloud Storage service to transfer the data to the GCloud 
     return jsonify(result), 200
+
 
 # @app.teardown_request
 # def shutdown_session(exception=None):

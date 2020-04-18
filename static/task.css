@@ -4,7 +4,8 @@ body {
 	background: #808080; /* black; */
 	color: white;
 	text-align: center;
-	font-family: Verdana, Helvetica, sans-serif;
+	font-family: "Century Gothic", Futura, sans-serif;
+	font-size: 14pt;
 	margin: 0 auto;
 	height:100%;
   width:100%;
@@ -46,6 +47,7 @@ font-size:100%;
 .continue  {
 	width: auto;
 	margin-bottom: 20px;
+	cursor:pointer
 }
 
 .instruct p {
