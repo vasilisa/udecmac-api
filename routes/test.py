@@ -81,11 +81,19 @@ def quitter():
     datastring   = request.form['datastring']
     when         = request.form['when']
 
+    cpath = os.getcwd()
+    print ("The current working directory is %s" % cpath)
+    
     file = pathlib.Path("quitters")
     if not file.exists():
         print ("Directory Quitters does not exist, creating ... ")
-        mkdir quitters
-    
+        try:
+            path = './quitters'
+            os.mkdir(path)
+            except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
 
     datafile     = open('quitters/prolific_id'+prolific_id+'_'+study_id+'_'+when+'.csv', 'w')
     datafile.write(datastring)
@@ -133,21 +141,39 @@ def savedata():
 
     print("saving the data of subject {1} for study {0} in time point {2}".format(prolific_id,study_id,longit_id))
     
+    cpath = os.getcwd()
+    print ("The current working directory is %s" % cpath)
+    
     file = pathlib.Path("taskdata")
     if not file.exists():
         print ("Directory taskdata does not exist, creating ... ")
-        mkdir taskdata
-    
+        try:
+            path = './taskdata'
+            os.mkdir(path)
+            except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
+
+
     datafile = open('taskdata/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
     datafile.write(datastring)
     datafile.close()
 
     # bonuses
+    cpath = os.getcwd()
+    print ("The current working directory is %s" % cpath)
+    
     file = pathlib.Path("payments")
     if not file.exists():
         print ("Directory payments does not exist, creating ... ")
-        mkdir payments
-    
+        try:
+            path = './payments'
+            os.mkdir(path)
+            except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
 
     datafile2 = open('payments/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
     datafile2.write(payment)
@@ -173,8 +199,6 @@ def savedata():
 
         result = dict({"success": "yes"}) 
 
-        # db_session.add(user)
-        # db_session.commit()
         print("Exp task done route, status is", user.status)
     
     # return render_template('payment.html')
