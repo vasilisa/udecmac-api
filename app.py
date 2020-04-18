@@ -43,7 +43,8 @@ app = Flask(__name__)
 # --- DB configuration ---- 
 # -------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-# 'mysql://root:pwd@localhost/covid19' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = config.get('Database Parameters','database_url')
+# 'mysql://root:pwd@localhost/covid19' # maybe put in the cofig 
 
 db.init_app(app)
 CORS(app)
@@ -101,22 +102,20 @@ def mytest():
     result['test'] = 'ok'
     return jsonify(result), 200
 
-@app.route('/app',methods=['GET','POST'])
-def myapp():
-    result = dict()
-    result['content'] = os.listdir(".")  # returns list
-    return jsonify(result), 200
-
-
 @app.route('/<pagename>')
 def regularpage(pagename=None):
     
     """
-    Important!: you need this part to make the sequential page working via showpages! 
+        Important!: you need this part to make the sequential page working via showpages! 
     """
     if pagename==None:
         raise ExperimentError('page_not_found')
     return render_template(pagename)
+
+
+# @app.teardown_request
+# def shutdown_session(exception=None):
+#    db_session.remove()
 
 
 ###########################################################

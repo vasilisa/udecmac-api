@@ -157,17 +157,17 @@ function randomIntFromInterval(min,max)
 var keydownfun = function() {};
 
 // Mutable global variables
-var datastring      = "";
-var questDatastring = "";
-var payment         = "";
-var bonusPayFin     = 0;
-var set_cond        = shuffle([1,2]); // set conditions for the task
-var is_training     = true;  // orig true hasn't started practice trials yet
-var is_quiz         = false;  //default false is going to do the instruction quiz
-var q               = -1;     //UNUSED TO BE REMOVED this the counter for the questionnaires
-var last_block      = false;
-var data_expReset   = 1;     //this is the counter for how many times they reset the exp bc they failed the confidence
-var data_pracReset  = 1;     //this is the counter for how many times they reset the prac bc they failed the instructions
+var datastring         = "";
+var feedbackDatastring = "";
+var payment            = "";
+var bonusPayFin        = 0;
+var set_cond           = shuffle([1,2]); // set conditions for the task
+var is_training        = true;  // orig true hasn't started practice trials yet
+var is_quiz            = false;  //default false is going to do the instruction quiz
+var q                  = -1;     //UNUSED TO BE REMOVED this the counter for the questionnaires
+var last_block         = false;
+var data_expReset      = 1;     //this is the counter for how many times they reset the exp bc they failed the confidence
+var data_pracReset     = 1;     //this is the counter for how many times they reset the prac bc they failed the instructions
 /*************
  * Finishing  up related stuff  *
  *************/
@@ -302,36 +302,17 @@ var removeListener = function (){
 };
 
 
-// TO BE ADDED FOR SOCIAL MEDIA version with email collection and debriefing 
-var startDebrief = function(){ // Save the data for the experiment and navigate to the validation page 
+var endExp = function(){
 
-    console.log('Running debriefing');
-    showpage('debfiefing'); 
+    kd.stop(); //to stop the kd run that was ran earlier (no keyboard response from now on!)
+    removeListener(); //this is so that you can type in the medlist
+    var endTime = new Date().toISOString().substr(0, 19);
 
-    // $.ajax("savedebrief", { 
-    //   type: "POST",
-    //   async: false,
-    //   data: {participant_id: participant_id,study_id:study_id, prolific_id:prolific_id, longit_id: longit_id,datastring: datastring, payment:payment, when:endTime},
-    // });
-    //   return false;
-
-
-   }; 
-    
-var endExp = function(){ // Save the data for the experiment and navigate to the validation page 
-
-    // kd.stop();         // to stop the kd run that was ran earlier (no keyboard response from now on!)
-    // removeListener();  //  this is so that you can type in the medlist
-    var endTime    = new Date().toISOString().substr(0, 19);
-    
-    showpage('payment'); 
-
-    // We will need it to incorporate deberiefing + email collection for social media version 
-    // $("#continue").click(function () {
-    //                   finish();
-    //                   startDebrief();
-    //                     });
-
+    showpage('q_exp');
+    $("#continue").click(function () {
+                          feedback();
+                          finish();
+                           });
 
     console.log('Saving Task and Bonus data');
     payment = payment.concat(prolific_id);
@@ -345,8 +326,48 @@ var endExp = function(){ // Save the data for the experiment and navigate to the
       data: {participant_id: participant_id,study_id:study_id, prolific_id:prolific_id, longit_id: longit_id,datastring: datastring, payment:payment, when:endTime},
     });
       return false;
-   }; 
-    
+    };
+
+
+
+//direct to age and gender
+var feedback =  function(){
+  showpage('feedback');
+        $("#continue").click(function () {
+                             finish();
+                             saveFeedback(); // this is called once the user clicks on the button next on the previous page  
+                               });
+      };
+
+
+//save age and gender to medlist
+var saveFeedback = function(){
+     $('input[type=text]').each( function(i, val) {
+                      console.log(this)
+                      feedbackDatastring = feedbackDatastring.concat( "\n", [this.value]);
+                       });
+      console.log('saveFeedback',feedbackDatastring)
+
+      toRavens();
+      return false;
+      };
+
+// Saving the feedback 
+var toRavens = function(){
+    showpage('payment');
+    var endTime = new Date().toISOString().substr(0, 19);
+  
+   console.log(feedbackDatastring);
+
+     $.ajax("feedbackDone", {
+     type: "POST",
+     async: false,
+     data: {participant_id: participant_id,study_id:study_id, prolific_id:prolific_id, longit_id: longit_id, feedbackDatastring: feedbackDatastring, when:endTime},
+   });
+  return false;
+};
+
+
 /********************
  * HTML snippets
  ********************/
@@ -359,9 +380,10 @@ var showpage = function(pagename) {
 var pagenames = [
                  "ps_instruct_quiz",
                  "test",
-                 "payment", // shows validation page for prolific  
-                 // "debriefing" // shows the debriefing page 
-                 ];
+                 "q_exp",
+                 "feedback",
+                 "payment"
+                ];
 
 /************************
  * CODE FOR INSTRUCTIONS *
@@ -511,8 +533,8 @@ var ExptPhase = function() {
 
     // THIS IS TO CALCULATE CPP AND PRESET PARTICLE LOCATION (IN DEGREES) FOR STABLE AND VOLATILE BLOCKS
  		var nCond          = set_cond.length; // length is 2 
-    var nTrialsPerCond = 2;//DEBUG ORIG = 150
-		var nTrialsPrac    = 1; //DEBUG ORIG = 10
+    var nTrialsPerCond = 1;//DEBUG ORIG = 150
+		var nTrialsPrac    = 1;//DEBUG ORIG = 10
 		var nTrialsTotal   = nTrialsPerCond*nCond; // 2
 		var nBlocks        = 2;// DEBUG ORIG = 5 
 		var nTrialsPerBlock= Math.floor(nTrialsTotal/nBlocks); //this has to be divisible by nBlocks
@@ -571,7 +593,7 @@ var ExptPhase = function() {
 		hitMiss        : -1, //basically accuracy
 		trialReward    : -1, //gain or lose per trial
 		// blockReward    : -1, //total gain or lose for particular block
-		totalReward    : 0,  //running total of how many coins (start with 0?)
+		totalReward    : 0, //running total of how many coins (start with 0?)
 		confOri        : -1, //this is the default conf 25/75
 		reset          : -1, //this is to see how many times they had to reset the expt because of confidence
 

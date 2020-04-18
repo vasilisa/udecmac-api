@@ -35,13 +35,10 @@
 		$(window).on("load", function() {
    			// alert("success");
 
-
-		// $(window).load( function() # depricated in jsquery > 3.0 
-			
 			runfun = function() {
 			            startTask(); //this runs the quitter sub
-                       instructobject = new Instructions(['demo','ps_instruct_demoq','ps_instruct_1', 'ps_instruct_2','ps_instruct_3', 'is_quiz']); // 'debrief// demo leads to the ps instruct whereas is_quiz leads to the instruction quiz
-			};
+                       instructobject = new Instructions(['demo','ps_instruct_demoq','ps_instruct_1', 'ps_instruct_2','ps_instruct_3', 'is_quiz','feedback']); 
+        	};
 
 			// Load resources then run the exp
 			// $.ajaxSetup({cache: false});
