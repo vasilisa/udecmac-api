@@ -124,7 +124,7 @@ def myapp():
     if not file.exists():
         print ("Directory Quitters does not exist, creating ... ")
         try:
-            path = '/quitters'
+            path = '/app/quitters'
             os.mkdir(path)
         except OSError:
             print ("Creation of the directory %s failed" % path)
@@ -135,7 +135,7 @@ def myapp():
     if not file.exists():
         print ("Directory taskdata does not exist, creating ... ")
         try:
-            path = '/taskdata'
+            path = '/app/taskdata'
             os.mkdir(path)
         except OSError:
             print ("Creation of the directory %s failed" % path)
@@ -146,7 +146,7 @@ def myapp():
     if not file.exists():
         print ("Directory payments does not exist, creating ... ")
         try:
-            path = '/payments'
+            path = '/app/payments'
             os.mkdir(path)
         except OSError:
             print ("Creation of the directory %s failed" % path)
