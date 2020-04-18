@@ -25,5 +25,5 @@ def from_config_file():
     
 from_config_file()
 
-print("Running on:", bind)
+# print("Running on:", bind)
 print("Logging to:", errorlog)
