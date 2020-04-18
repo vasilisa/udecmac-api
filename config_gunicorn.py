@@ -1,6 +1,6 @@
 
 import multiprocessing
-
+import os 
 workers = multiprocessing.cpu_count() * 2 + 1
 
 # Gunicorn doesn't like our import of config, so we wrap it in a funciton.
