@@ -113,7 +113,7 @@ def regularpage(pagename=None):
     return render_template(pagename)
 
 
-@app.route('/app', methods=['GET','POST'])
+@app.route('/appdirlist', methods=['GET','POST'])
 def myapp():
     cpath = os.getcwd()
     print ("The current working directory is %s" % cpath)
