@@ -533,10 +533,10 @@ var ExptPhase = function() {
 
     // THIS IS TO CALCULATE CPP AND PRESET PARTICLE LOCATION (IN DEGREES) FOR STABLE AND VOLATILE BLOCKS
  		var nCond          = set_cond.length; // length is 2 
-    var nTrialsPerCond = 1;//DEBUG ORIG = 150
-		var nTrialsPrac    = 1;//DEBUG ORIG = 10
+    var nTrialsPerCond = 150;//DEBUG ORIG = 150
+		var nTrialsPrac    = 10;//DEBUG ORIG = 10
 		var nTrialsTotal   = nTrialsPerCond*nCond; // 2
-		var nBlocks        = 2;// DEBUG ORIG = 5 
+		var nBlocks        = 5;// DEBUG ORIG = 5 
 		var nTrialsPerBlock= Math.floor(nTrialsTotal/nBlocks); //this has to be divisible by nBlocks
 
     console.log(nTrialsPrac)
