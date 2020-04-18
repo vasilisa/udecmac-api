@@ -5,6 +5,7 @@ import json
 import datetime
 from sqlalchemy.sql.expression import func
 import pathlib
+import os 
 
 # Status codes
 ALLOCATED = 1
@@ -90,7 +91,7 @@ def quitter():
         try:
             path = './quitters'
             os.mkdir(path)
-            except OSError:
+        except OSError:
             print ("Creation of the directory %s failed" % path)
         else:
             print ("Successfully created the directory %s " % path)
@@ -150,7 +151,7 @@ def savedata():
         try:
             path = './taskdata'
             os.mkdir(path)
-            except OSError:
+        except OSError:
             print ("Creation of the directory %s failed" % path)
         else:
             print ("Successfully created the directory %s " % path)
@@ -170,7 +171,7 @@ def savedata():
         try:
             path = './payments'
             os.mkdir(path)
-            except OSError:
+        except OSError:
             print ("Creation of the directory %s failed" % path)
         else:
             print ("Successfully created the directory %s " % path)
