@@ -113,6 +113,13 @@ def regularpage(pagename=None):
     return render_template(pagename)
 
 
+@app.route('/app', methods=['GET', 'POST'])
+def myapp():
+    cpath = os.getcwd()
+    print ("The current working directory is %s" % cpath)
+    result = dict(os.listdir(cpath))
+    return jsonify(result), 200
+
 # @app.teardown_request
 # def shutdown_session(exception=None):
 #    db_session.remove()
