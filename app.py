@@ -113,57 +113,6 @@ def regularpage(pagename=None):
     return render_template(pagename)
 
 
-@app.route('/appdirlist', methods=['GET','POST'])
-def myapp():
-    cpath = os.getcwd()
-    print ("The current working directory is %s" % cpath)
-    print(cpath) 
-    print ("The current working directory is %s" % cpath)
-    
-    file = pathlib.Path("quitters")
-    if not file.exists():
-        print ("Directory Quitters does not exist, creating ... ")
-        try:
-            path = '/app/quitters'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-    file = pathlib.Path("taskdata")
-    if not file.exists():
-        print ("Directory taskdata does not exist, creating ... ")
-        try:
-            path = '/app/taskdata'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-    file = pathlib.Path("payments")
-    if not file.exists():
-        print ("Directory payments does not exist, creating ... ")
-        try:
-            path = '/app/payments'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-    # Add Goolge Cloud Storage service to transfer the data to the GCloud 
-    result             = dict()
-    result['taskdata'] = os.listdir('taskdata/')
-    result['quitters'] = os.listdir('quitters/')
-    result['payments'] = os.listdir('payments/')
-    result['cpath']    = cpath
-
-
-    return jsonify(result), 200
-
-
 # @app.teardown_request
 # def shutdown_session(exception=None):
 #    db_session.remove()

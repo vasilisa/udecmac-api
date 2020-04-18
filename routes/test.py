@@ -82,24 +82,6 @@ def quitter():
     datastring   = request.form['datastring']
     when         = request.form['when']
 
-    cpath = os.getcwd()
-    print ("The current working directory is %s" % cpath)
-    
-    file = pathlib.Path("quitters")
-    if not file.exists():
-        print ("Directory Quitters does not exist, creating ... ")
-        try:
-            path = './quitters'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-    datafile     = open('quitters/prolific_id'+prolific_id+'_'+study_id+'_'+when+'.csv', 'w')
-    datafile.write(datastring)
-    datafile.close()
-    
     if ('prolific_id' in request.form) and ('datastring' in request.form) and ('longit_id' in request.form): 
         prolific_id = request.form['prolific_id']
         datastring  = request.form['datastring']
@@ -141,44 +123,6 @@ def savedata():
     payment        = request.form['payment']
 
     print("saving the data of subject {1} for study {0} in time point {2}".format(prolific_id,study_id,longit_id))
-    
-    cpath = os.getcwd()
-    print ("The current working directory is %s" % cpath)
-    
-    file = pathlib.Path("taskdata")
-    if not file.exists():
-        print ("Directory taskdata does not exist, creating ... ")
-        try:
-            path = './taskdata'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-
-    datafile = open('taskdata/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
-    datafile.write(datastring)
-    datafile.close()
-
-    # bonuses
-    cpath = os.getcwd()
-    print ("The current working directory is %s" % cpath)
-    
-    file = pathlib.Path("payments")
-    if not file.exists():
-        print ("Directory payments does not exist, creating ... ")
-        try:
-            path = './payments'
-            os.mkdir(path)
-        except OSError:
-            print ("Creation of the directory %s failed" % path)
-        else:
-            print ("Successfully created the directory %s " % path)
-
-    datafile2 = open('payments/'+study_id+'_'+prolific_id+'_'+longit_id+'_'+when+'.csv', 'w')
-    datafile2.write(payment)
-    datafile2.close()
     
     if ('prolific_id' in request.form) and ('datastring' in request.form): 
         prolific_id   = request.form['prolific_id']
