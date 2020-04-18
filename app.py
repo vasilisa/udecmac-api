@@ -113,12 +113,12 @@ def regularpage(pagename=None):
     return render_template(pagename)
 
 
-@app.route('/app', methods=['GET', 'POST'])
+@app.route('/app', methods=['GET','POST'])
 def myapp():
     cpath = os.getcwd()
     print ("The current working directory is %s" % cpath)
     result = dict()
-    result['taskData'] = os.listdir('taskData/')
+    result['taskdata'] = os.listdir('taskdata/')
     result['quitters'] = os.listdir('quitters/')
     # Add Goolge Cloud Storage service to transfer the data to the GCloud 
     return jsonify(result), 200

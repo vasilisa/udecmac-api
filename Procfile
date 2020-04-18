@@ -1,1 +1,1 @@
-web: python app.py
+web: bash run_gunicorn.sh
