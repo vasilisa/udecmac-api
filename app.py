@@ -118,11 +118,48 @@ def myapp():
     cpath = os.getcwd()
     print ("The current working directory is %s" % cpath)
     print(cpath) 
-    result = dict()
-    result['cpath'] = cpath
-    # result['taskdata'] = os.listdir('taskdata/')
-    # result['quitters'] = os.listdir('quitters/')
+    print ("The current working directory is %s" % cpath)
+    
+    file = pathlib.Path("quitters")
+    if not file.exists():
+        print ("Directory Quitters does not exist, creating ... ")
+        try:
+            path = '/quitters'
+            os.mkdir(path)
+        except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
+
+    file = pathlib.Path("taskdata")
+    if not file.exists():
+        print ("Directory taskdata does not exist, creating ... ")
+        try:
+            path = '/taskdata'
+            os.mkdir(path)
+        except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
+
+    file = pathlib.Path("payments")
+    if not file.exists():
+        print ("Directory payments does not exist, creating ... ")
+        try:
+            path = '/payments'
+            os.mkdir(path)
+        except OSError:
+            print ("Creation of the directory %s failed" % path)
+        else:
+            print ("Successfully created the directory %s " % path)
+
     # Add Goolge Cloud Storage service to transfer the data to the GCloud 
+    result             = dict()
+    result['taskdata'] = os.listdir('taskdata/')
+    result['quitters'] = os.listdir('quitters/')
+    result['payments'] = os.listdir('payments/')
+    result['cpath']    = cpath
+
 
     return jsonify(result), 200
 
