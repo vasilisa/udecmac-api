@@ -10,9 +10,12 @@ def from_config_file():
     
     # Address to bind
     #bind = config.get("Server Parameters", "host") + ":" + config.get("Server Parameters", "port")
-    port = int(os.environ.get("PORT", 5000)) 
+    port = os.environ.get("PORT", 5000)
     host = os.environ.get("host")
 
+    print('Port',port)
+    print('Host',host)
+    
     bind = host + ":" + port 
 
     # Logging
