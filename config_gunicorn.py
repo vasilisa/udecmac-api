@@ -11,7 +11,7 @@ def from_config_file():
     # Address to bind
     #bind = config.get("Server Parameters", "host") + ":" + config.get("Server Parameters", "port")
     port = str(os.environ.get("PORT", 5000))
-    host = 'https://udecmac.osc-fr1.scalingo.io' # "0.0.0.0" # 'https://udecmac.osc-fr1.scalingo.io'
+    host = 'udecmac.osc-fr1.scalingo.io' # "0.0.0.0" # 'https://udecmac.osc-fr1.scalingo.io'
 
     print('Port',port)
     print('Host',host)
