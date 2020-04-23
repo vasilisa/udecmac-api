@@ -11,7 +11,6 @@ import numpy as np
 from sqlalchemy.sql.expression import func
 
 
-
 @app.route("/participants_question_data/last_participant_id", methods=["GET"])
 def get_last_participant_id():
 

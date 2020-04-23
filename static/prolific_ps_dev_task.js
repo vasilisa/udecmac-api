@@ -161,7 +161,7 @@ var datastring         = "";
 var feedbackDatastring = "";
 var payment            = "";
 var bonusPayFin        = 0;
-var set_cond           = shuffle([1,2]); // set conditions for the task
+var set_cond           = [2]; // shuffle([1,2]); // set conditions for the task
 var is_training        = true;  // orig true hasn't started practice trials yet
 var is_quiz            = false;  //default false is going to do the instruction quiz
 var q                  = -1;     //UNUSED TO BE REMOVED this the counter for the questionnaires
@@ -532,11 +532,11 @@ var ExptPhase = function() {
 		var  conf_checkTrial2     = 50;
 
     // THIS IS TO CALCULATE CPP AND PRESET PARTICLE LOCATION (IN DEGREES) FOR STABLE AND VOLATILE BLOCKS
- 		var nCond          = set_cond.length; // length is 2 
-    var nTrialsPerCond = 150;//DEBUG ORIG = 150
-		var nTrialsPrac    = 10;//DEBUG ORIG = 10
+ 		var nCond          = set_cond.length; // just one condition with High Hazard rate 
+    var nTrialsPerCond = 200;  // DEBUG ORIG = 150
+		var nTrialsPrac    = 10;   // DEBUG ORIG = 10
 		var nTrialsTotal   = nTrialsPerCond*nCond; // 2
-		var nBlocks        = 5;// DEBUG ORIG = 5 
+		var nBlocks        = 4;   //  4 blocks of 50 trials each DEBUG ORIG = 5 
 		var nTrialsPerBlock= Math.floor(nTrialsTotal/nBlocks); //this has to be divisible by nBlocks
 
     console.log(nTrialsPrac)
@@ -1161,7 +1161,7 @@ pracConfirmText.remove();
 			"font-size":16
 			});
 
-		 set_cond = shuffle([1,2]); // reset conditions for the task
+		 set_cond = [2]; // shuffle([1,2]); // reset conditions for the task
 		 is_quiz = true; //is going to do the instruction quiz
 		 data_expReset++;
 
