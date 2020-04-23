@@ -42,7 +42,7 @@ class Test(BaseObject, Model):
         self.prolific_id    = prolific_id     
         self.study_id       = study_id        
         self.longit_id      = longit_id # TO BE DECIDED WHERE TO PUT IT MAYBE IN THE CONFIG LIKE CODE-VERSION -> longit_id 
-        self.codeversion    = CODE_VERSION
+        self.codeversion    = str(CODE_VERSION)
         self.debriefed      = False
         self.status         = 1
         self.beginexp       = datetime.datetime.now() 
