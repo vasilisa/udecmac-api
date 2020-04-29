@@ -161,7 +161,7 @@ var datastring         = "";
 var feedbackDatastring = "";
 var payment            = "";
 var bonusPayFin        = 0;
-var set_cond           = [2]; // shuffle([1,2]); // set conditions for the task
+var set_cond           = shuffle([1,2]); // set conditions for the task
 var is_training        = true;  // orig true hasn't started practice trials yet
 var is_quiz            = false;  //default false is going to do the instruction quiz
 var q                  = -1;     //UNUSED TO BE REMOVED this the counter for the questionnaires
@@ -183,7 +183,7 @@ var data_pracReset     = 1;     //this is the counter for how many times they re
  };
 
  var startInstruc = function(){
-	 instructobject = new Instructions(['ps_instruct_1','ps_instruct_2','ps_instruct_3']);
+	 instructobject = new Instructions(['ps_instruct_1','ps_instruct_2','ps_instruct_3', 'ps_instruct_4','ps_instruct_5','ps_instruct_6']);
 	 finish();
 	 startTask();
  };
@@ -212,17 +212,20 @@ var data_pracReset     = 1;     //this is the counter for how many times they re
                           });
  };
 
- var CheckAnswers = function() {
+// This is changed for the KIDS VERSION NOW which is simpler
+ 
+var CheckAnswers = function() {
+  // correct answers : 3 3 2 2 3 
 
      $('select').each( function(i, val) {
 //correct answers are 4, 3, 3, 2, 4
                       if(this.id =="coinAimCheck"){
-                      correct = (this.value == 4)? 1 : 0;
+                      correct = (this.value == 3)? 1 : 0; // this is modified for kids 
                          if(correct === 0){
-                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3']);
-												 	data_pracReset++;
+                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3','ps_instruct_4','ps_instruct_5','ps_instruct_6']);
+                          data_pracReset++;
                       is_quiz     = true;
-											is_training = true;
+                      is_training = true;
                       startTask();
                       return false;
                          }
@@ -231,55 +234,55 @@ var data_pracReset     = 1;     //this is the counter for how many times they re
                       else if(this.id =="coinFlyCheck"){
                       correct = (this.value == 3)? 1 : 0;
                          if(correct === 0){
-                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2','ps_instruct_3']);
-												 data_pracReset++;
+                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2','ps_instruct_3','ps_instruct_4','ps_instruct_5','ps_instruct_6']);
+                         data_pracReset++;
                       is_quiz = true;
-											is_training = true;
+                      is_training = true;
                       startTask();
                       return false;
                          }
                       }
 
                       else if(this.id == "confRateCheck"){
-                      correct = (this.value == 3)? 1 : 0;
+                      correct = (this.value == 2)? 1 : 0;
                          if(correct === 0){
-                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3']);
-												 	data_pracReset++;
+                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3','ps_instruct_4','ps_instruct_5','ps_instruct_6']);
+                          data_pracReset++;
                       is_quiz = true;
-											is_training = true;
+                      is_training = true;
                       startTask();
                       return false;
                          }
                       }
 
-											else if(this.id =="HighConfCheck"){
-											correct = (this.value == 2)? 1 : 0;
-												 if(correct === 0){
-												 instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2','ps_instruct_3']);
-												 	data_pracReset++;
-											is_quiz = true;
-											is_training = true;
-											startTask();
-											return false;
-												 }
-											}
+                      else if(this.id =="HighConfCheck"){
+                      correct = (this.value == 2)? 1 : 0;
+                         if(correct === 0){
+                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2','ps_instruct_3','ps_instruct_4','ps_instruct_5','ps_instruct_6']);
+                          data_pracReset++;
+                      is_quiz = true;
+                      is_training = true;
+                      startTask();
+                      return false;
+                         }
+                      }
 
-											else if(this.id == "LowConfCheck"){
-											correct = (this.value == 4)? 1 : 0;
-												 if(correct === 0){
-												 instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3']);
-											data_pracReset++;
-											is_quiz = true;
-											is_training = true;
-											startTask();
-											return false;
-												 }
-											}
+                      else if(this.id == "LowConfCheck"){
+                      correct = (this.value == 3)? 1 : 0;
+                         if(correct === 0){
+                         instructobject = new Instructions(['ps_instruct_0','ps_instruct_1','ps_instruct_2', 'ps_instruct_3','ps_instruct_4','ps_instruct_5','ps_instruct_6']);
+                      data_pracReset++;
+                      is_quiz = true;
+                      is_training = true;
+                      startTask();
+                      return false;
+                         }
+                      }
 
 
                       });
      if(correct ==1){ //if all correct, head on to start page for actual experiment
-     instructobject = new Instructions(['ps_instruct_4']);
+     instructobject = new Instructions(['ps_instruct_7']);
      is_quiz     = false; //finished instruction quiz
      is_training = false;//just going to start practice round
      startTask();
@@ -476,7 +479,7 @@ var ExptPhase = function() {
     //colour details
     var col_white           = '#FFFFFF';// aka rgb 255 255 255
     var col_black           = '#000000';// aka rgb 000 000 000
-    var col_background      = '#808080';// aka rgb 128 128 128
+    var col_background      = '#3F3979';// aka rgb 128 128 128
     var col_confBar         = '#E5E5E5';// aka rbg 229 229 229
     var col_green           = '#00FF00';// aka rgb 0 255 0
     var col_red             = '#FF0000'; //aka rgb 255 0 0
@@ -524,7 +527,7 @@ var ExptPhase = function() {
     var  conf_barWidth        = 500;
 		var  conf_barSpeed        = 1;//was 2
 		var  conf_indRand         = [25,75];
-    var  conf_indHeight       = conf_barHeight; //for the indicatior
+    var  conf_indHeight       = conf_barHeight+10; //for the indicatior
     var  conf_indWidth        = conf_barWidth/100;
     var  conf_range           = [1,100]; // min and max value of conf?
 		var  conf_check           =[]; //this is for the array to check if they moved their confidence or not
@@ -532,11 +535,11 @@ var ExptPhase = function() {
 		var  conf_checkTrial2     = 50;
 
     // THIS IS TO CALCULATE CPP AND PRESET PARTICLE LOCATION (IN DEGREES) FOR STABLE AND VOLATILE BLOCKS
- 		var nCond          = set_cond.length; // just one condition with High Hazard rate 
-    var nTrialsPerCond = 200;  // DEBUG ORIG = 150
-		var nTrialsPrac    = 10;   // DEBUG ORIG = 10
+ 		var nCond          = set_cond.length; // length is 2 
+    var nTrialsPerCond = 1;//DEBUG ORIG = 200
+		var nTrialsPrac    = 1;//DEBUG ORIG = 10
 		var nTrialsTotal   = nTrialsPerCond*nCond; // 2
-		var nBlocks        = 4;   //  4 blocks of 50 trials each DEBUG ORIG = 5 
+		var nBlocks        = 2;// DEBUG ORIG = 4 
 		var nTrialsPerBlock= Math.floor(nTrialsTotal/nBlocks); //this has to be divisible by nBlocks
 
     console.log(nTrialsPrac)
@@ -666,24 +669,24 @@ function draw_bucket(canvas_xCenter, canvas_yCenter, stim_cirDia, stim_innerCirD
 }
 
 //this will draw the confidence box
-function draw_confBar(canvas_xCenter, canvas_height, conf_barWidth, conf_barHeight,col_confBar, col_black) {
+function draw_confBar(canvas_xCenter, canvas_height, conf_barWidth, conf_barHeight,col_confBar, col_white) {
 	//confidence box
 	var confBar = paper.rect(canvas_xCenter - (conf_barWidth / 2), canvas_height + 10, conf_barWidth, conf_barHeight).attr({
-		stroke: col_black,
+		stroke: col_white,
 		"stroke-width": 3,
 		fill: col_confBar
 	});
 
 	//confidence text
-	var confBegin = paper.text(canvas_xCenter - (conf_barWidth / 2), canvas_height - 5, "1").attr({
-		stroke: col_black,
+	var confBegin = paper.text(canvas_xCenter - (conf_barWidth / 2), canvas_height - 5, "very uncertain").attr({
+		stroke: col_white,
 		"font-size": 25,
-		fill: col_black
+		fill: col_white
 	});
-	var confEnd = paper.text(canvas_xCenter + (conf_barWidth / 2), canvas_height - 5, "100").attr({
-		stroke: col_black,
+	var confEnd = paper.text(canvas_xCenter + (conf_barWidth / 2), canvas_height - 5, "very certain").attr({
+		stroke: col_white,
 		"font-size": 25,
-		fill: col_black
+		fill: col_white
 	});
 
 	return {confBar:confBar,
@@ -704,13 +707,13 @@ function draw_confInd(canvas_height, conf_indWidth, conf_indHeight, col_bucket, 
 }
 
 //moneyAmt should be a string saying how much points they have currently
-function draw_confText(canvas_height, canvas_width,col_black) {
+function draw_confText(canvas_height, canvas_width,col_white) {
 
 	var confText = paper.text(canvas_width/2, canvas_height-10, "Rate your confidence").attr({
-		stroke: col_black,
+		stroke: col_white,
 		"font-size": 18,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 	return confText;
 }
@@ -733,12 +736,12 @@ function draw_moneyCoin(canvas_width, stim_moneyDia, col_iconFront, col_iconBack
 
 
 //moneyAmt should be a string saying how much points they have currently
-function draw_moneyText(canvas_width, col_black, money_Amt) {
+function draw_moneyText(canvas_width, col_white, money_Amt) {
 
 	var moneyInd = paper.text(canvas_width - 52, 44, money_Amt).attr({
-		stroke: col_black,
+		stroke: col_white,
 		"font-size": 30,
-		fill: col_black
+		fill: col_white
 	});
 	return moneyInd;
 }
@@ -763,13 +766,13 @@ function draw_dotShoot(canvas_xCenter, canvas_yCenter, stim_coord, stim_cirDia, 
 
 }
 
-function draw_pracConfirmText(canvas_height, canvas_width,col_black) {
+function draw_pracConfirmText(canvas_height, canvas_width,col_white) {
 
 	var pracConfirmText = paper.text(canvas_width/2, canvas_height/2+80, "Press the spacebar to confirm its position.").attr({
-		stroke: col_black,
-		"font-size": 15,
+		stroke: col_white,
+		"font-size": 20,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 
 	return pracConfirmText;
@@ -777,20 +780,20 @@ function draw_pracConfirmText(canvas_height, canvas_width,col_black) {
 
 
 
-function draw_pracConfText(canvas_height, canvas_width,col_black) {
+function draw_pracConfText(canvas_height, canvas_width,col_white) {
 
-	var pracConfText1 = paper.text(canvas_width/2, canvas_height/2+40, "Press the right arrow key to move \nthe confidence indicator rightward.").attr({
-		stroke: col_black,
-		"font-size": 15,
+	var pracConfText1 = paper.text(canvas_width/2, canvas_height/2+40, "Press the RIGHT arrow key if you feel \nMORE certain.").attr({
+		stroke: col_white,
+		"font-size": 20,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 
-	var pracConfText2 = paper.text(canvas_width/2, canvas_height/2-40, "Press the left arrow key to move \nthe confidence indicator leftward.").attr({
-		stroke: col_black,
-		"font-size": 15,
+	var pracConfText2 = paper.text(canvas_width/2, canvas_height/2-40, "Press the RIGHT arrow key if you feel \nMORE certain.").attr({
+		stroke: col_white,
+		"font-size": 20,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 
 
@@ -799,20 +802,20 @@ function draw_pracConfText(canvas_height, canvas_width,col_black) {
 };
 }
 
-function draw_pracText(canvas_height, canvas_width,col_black) {
+function draw_pracText(canvas_height, canvas_width,col_white) {
 
-	var pracText1 = paper.text(canvas_width/2, canvas_height/2+40, "Press the right arrow key to \nmove the bucket clockwise.").attr({
-		stroke: col_black,
-		"font-size": 15,
+	var pracText1 = paper.text(canvas_width/2, canvas_height/2+40, "Press LEFT or RIGHT arrow keys to \nmove the bucket on the ring.").attr({
+		stroke: col_white,
+		"font-size": 20,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 
-	var pracText2 = paper.text(canvas_width/2, canvas_height/2-40, "Press the left arrow key to \nmove the bucket counter-clockwise.").attr({
-		stroke: col_black,
-		"font-size": 15,
+	var pracText2 = paper.text(canvas_width/2, canvas_height/2-40, "").attr({
+		stroke: col_white,
+		"font-size": 20,
 		"font-family":" Verdana, Helvetica, sans-serif",
-		fill: col_black
+		fill: col_white
 	});
 
 
@@ -1013,7 +1016,7 @@ var draw_conf = function(){
 if (is_training){
     pracText.pracText1.remove();
     pracText.pracText2.remove();
-		pracConfText = draw_pracConfText(canvas_height,canvas_width,col_black);}
+		pracConfText = draw_pracConfText(canvas_height,canvas_width,col_white);}
 
     //start of confidence rating
     data_confRTStart = new Date().getTime() - data_expStart;
@@ -1022,7 +1025,7 @@ if (is_training){
   	prevConf         = data.confOri;	//this is to reset confidence indicator to either 25 or 75 after every trial
 		conf_pos         = confConvert(canvas_xCenter,conf_barWidth,prevConf);
 		confInd          = draw_confInd(canvas_height, conf_indWidth, conf_indHeight, col_bucket, conf_pos); //if i dont decalre var, this is a global variable, hence i can remove or hide it in the other functions
-		confText         = draw_confText(canvas_height,canvas_width,col_black);
+		confText         = draw_confText(canvas_height,canvas_width,col_white);
 
     confBar.confBar.show();
 		confBar.confBegin.show();
@@ -1134,7 +1137,7 @@ pracConfirmText.remove();
 
       //end of trial, replace money feedback
       moneyText.remove();
-      moneyText = draw_moneyText(canvas_width, col_black, data_totalReward.toString()); //draw amount of money text
+      moneyText = draw_moneyText(canvas_width, col_white, data_totalReward.toString()); //draw amount of money text
     }, time_dotSpeed);
 
     data_trialEnd = new Date().getTime() - data_expStart;
@@ -1161,7 +1164,7 @@ pracConfirmText.remove();
 			"font-size":16
 			});
 
-		 set_cond = [2]; // shuffle([1,2]); // reset conditions for the task
+		 set_cond = shuffle([1,2]); // reset conditions for the task
 		 is_quiz = true; //is going to do the instruction quiz
 		 data_expReset++;
 
@@ -1316,7 +1319,7 @@ progPageText = paper.text(canvas_xCenter, canvas_yCenter, "Block " +data_nBlock+
 	stroke: col_white,
 	fill: col_white,
 "font-family":" Verdana, Helvetica, sans-serif",
-"font-size":16
+"font-size":25
 });
 
 progListening = true;
@@ -1330,27 +1333,27 @@ data_nBlock ++;
 var draw_trial = function() {
   // console.log("Drawing trial - practice: " +data_nTrialPrac+ " or actual: " +data_nTrial);
 	// buck_done = 0;
-	buckListening = true;
-	confListening = false;
+	buckListening   = true;
+	confListening   = false;
 	data_trialStart = new Date().getTime() - data_expStart;
 
 	if(is_training){
-	data.nTrial = data_nTrialPrac;
-	pracText = draw_pracText(canvas_height, canvas_width,col_black);
-	pracConfirmText = draw_pracConfirmText(canvas_height, canvas_width,col_black);
-  data.reset = data_pracReset;
+	data.nTrial     = data_nTrialPrac;
+	pracText        = draw_pracText(canvas_height, canvas_width,col_white);
+	pracConfirmText = draw_pracConfirmText(canvas_height, canvas_width,col_white);
+  data.reset      = data_pracReset;
 }
 	else{
   data.nTrial = data_nTrial;
-	data.reset = data_expReset;
+	data.reset  = data_expReset;
 }
 
-  data.nTrialInCond = data_nTrialInCond;
+  data.nTrialInCond  = data_nTrialInCond;
   data.nTrialinBlock = data_nTrialInBlock;
-	data.nCond = data_nCond;
-	data.nBlock = data_nBlock;
-	data.trialStart = data_trialStart;
-	data.condition = data_condition;
+	data.nCond         = data_nCond;
+	data.nBlock        = data_nBlock;
+	data.trialStart    = data_trialStart;
+	data.condition     = data_condition;
 
 
   };
@@ -1423,7 +1426,7 @@ var start_expt = function() {
 						stroke: col_white,
 						fill: col_white,
 					"font-family":" Verdana, Helvetica, sans-serif",
-					"font-size":16
+					"font-size":25
 					});
 
           last_block= true;
@@ -1484,13 +1487,13 @@ var locVarVol = stim_locVariables(nTrialsPerCond,stim_volHazRate); //this will m
 //DRAWING THE STIMULI
 var defaultCircle = draw_defaultCircle(canvas_xCenter, canvas_yCenter, stim_cirDia,stim_innerCirDia,stim_dotDia,col_white,col_background); //draw circle and fixation
 var moneyCoin =  draw_moneyCoin(canvas_width,stim_moneyDia,col_iconFront,col_iconBack); //draw money icon
-var moneyText = draw_moneyText(canvas_width,col_black,data_totalReward.toString()); //draw amount of money text
+var moneyText = draw_moneyText(canvas_width,col_white,data_totalReward.toString()); //draw amount of money text
 var bucket = draw_bucket (canvas_xCenter,canvas_yCenter, stim_cirDia, stim_innerCirDia,stim_bucketDia,stim_bucketSize,col_bucket,col_background,data_buckPos);
 //draw bucket, start position is random?
 
 //need to draw confindicator in global space so as to remove object during response
 //var confInd = draw_confInd(canvas_height, conf_indWidth, conf_indHeight, col_black, conf_pos);
-var confBar = draw_confBar(canvas_xCenter, canvas_height, conf_barWidth, conf_barHeight,col_confBar, col_black);
+var confBar = draw_confBar(canvas_xCenter, canvas_height, conf_barWidth, conf_barHeight,col_confBar, col_white);
 
 //hide the conf stim until its time for conf rating to appear
 confBar.confBar.hide();

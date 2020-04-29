@@ -1,30 +1,17 @@
-<script>
-
-//setTimeout(function(){ $('div#nextButton').css('visibility','visible'); }, 8000);
-
-</script>
-
 <div class="instruct" id="main">
 
-  <p>To <strong>summarise</strong>, at the beginning of each trial, you are to position your orange bucket to where you think you will be able to catch the flying coin with the <strong>left/right ARROW</strong> keys. </p>
-
-  <p>Press the <strong>SPACEBAR</strong> to confirm the bucket position. </p>
-
-  <p>You will then indicate how confident you are that the coin will land in the orange bucket on the confidence meter with the <strong>left/right ARROW</strong> keys. Please do your best to rate your confidence accurately and do take advantage of the whole rating scale.</p>
-
-  <p>After you have chosen your confidence level in how likely you believe the coin is going to land in your orange bucket, press <strong>SPACEBAR</strong> again to let the coin fly. </p>
-
-  <p>Try to respond as quickly and accurately as possible.</p>
-
-  <p>On the top right corner of the screen, there will be a counter to show you how many points you've collected along the way.</p>
-
-  <p>First, you will do <strong>one practice block of 10 coins </strong> to get used to the task. <br>
-    After, you will have to <strong>complete a short quiz</strong> relating to task. </p>
-
-  <p>You will need to answer all of the quiz questions correctly to move on to the experiment - otherwise we will bring you through the instructions and practice again. </p>
-
+  <p>After you have positioned the space bucket on the ring, you will rate how confident you are that the asteroid will land on the bucket.</p>
+  <p>Your confidence meter will range from <strong style="color:white;">very uncertain</strong> to <strong style="color:white;">very certain</strong>.</p>
   <br>
-<div id="nextButton" style="visibility: visible;">
-When you're ready to start the practice, click <strong>Next</strong>.	<input type="button" class="continue" id="Next" value="Next" />
+  <p>A <strong style="color:white">low</strong> confidence means that you are <strong style="color:white;">very uncertain</strong> that the asteroid will land in your bucket. <br>
+  A <strong style="color:white">high</strong> confidence means that you are <strong style="color:white;">very certain</strong> that the asteroid will land in your bucket.</p>
+
+  <div id="nextButton" style="visibility: visible;">
+  <input type="button" class="continue" id="continue" value="Next" />
+  </div>
 </div>
-</div>
+
+<script type="text/javascript">
+  document.getElementById("continue").disabled = false;
+  document.getElementById('continue').style = 'background-color: #4CAF50;';
+</script>

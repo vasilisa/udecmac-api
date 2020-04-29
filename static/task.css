@@ -1,14 +1,15 @@
 
 body {
 	/* background: #999; */
-	background: #808080; /* black; */
+	background: #3F3B78;  /* #808080; - grey; */
 	color: white;
 	text-align: center;
 	font-family: "Century Gothic", Futura, sans-serif;
 	font-size: 14pt;
 	margin: 0 auto;
 	height:100%;
-  width:100%;
+  	width:100%;
+  	color: #FFCC90;
 }
 
 a {
@@ -25,17 +26,19 @@ a {
 
 strong {
 	font-weight: bold;
-	color: black; /* $DDAA90; */
+	color: #FFCC90;
+	/* $DDAA90; */
 }
-
-
 
 #main {
 	margin: 0 auto;
+	margin-top: -10px;
 	width:800px;
 	font-size: 100%;
 	padding-top:50px;
+	color: #FFCC90;
 }
+
 
 .writeIn40 {
 text-align: left;
@@ -47,7 +50,8 @@ font-size:100%;
 .continue  {
 	width: auto;
 	margin-bottom: 20px;
-	cursor:pointer
+	cursor:pointer;
+	color:black;
 }
 
 .instruct p {
