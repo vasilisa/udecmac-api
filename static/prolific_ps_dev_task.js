@@ -161,7 +161,7 @@ var datastring         = "";
 var feedbackDatastring = "";
 var payment            = "";
 var bonusPayFin        = 0;
-var set_cond           = shuffle([1,2]); // set conditions for the task
+var set_cond           = [2]; // just high hazard rate condition shuffle([1,2]); // set conditions for the task
 var is_training        = true;  // orig true hasn't started practice trials yet
 var is_quiz            = false;  //default false is going to do the instruction quiz
 var q                  = -1;     //UNUSED TO BE REMOVED this the counter for the questionnaires
@@ -1049,10 +1049,10 @@ var draw_dot = function(){
     //this calculates if the particle will land in the bucket
  if (!is_training) {
     if (data_condition==1) { //for stable condition
-    dot_pos = locVarSta.stim_refLocFin[data_nTrialInCond-1];
-		dot_Mpos = locVarSta.stim_refLocMean[data_nTrialInCond-1];
+    dot_pos          = locVarSta.stim_refLocFin[data_nTrialInCond-1];
+		dot_Mpos         = locVarSta.stim_refLocMean[data_nTrialInCond-1];
 		data_changePoint = locVarSta.stim_changePoint[data_nTrialInCond-1];
-		data.hazRate = stim_staHazRate;
+		data.hazRate     = stim_staHazRate;
 
 	// }else if (data_condition==2) { //for mid condition
   //   dot_pos = locVarMid.stim_refLocFin[data_nTrialInCond-1];
@@ -1061,10 +1061,10 @@ var draw_dot = function(){
 	// 	data.hazRate = stim_midHazRate;
      }
 		else if (data_condition==2) { //for volatile condition
-			dot_pos = locVarVol.stim_refLocFin[data_nTrialInCond-1];
-			dot_Mpos = locVarVol.stim_refLocMean[data_nTrialInCond-1];
+			dot_pos          = locVarVol.stim_refLocFin[data_nTrialInCond-1];
+			dot_Mpos         = locVarVol.stim_refLocMean[data_nTrialInCond-1];
 			data_changePoint = locVarVol.stim_changePoint[data_nTrialInCond-1];
-			data.hazRate = stim_volHazRate;
+			data.hazRate     = stim_volHazRate;
 			}
 		else{
     console.log('ERRRROOORRRRRR');
@@ -1164,8 +1164,8 @@ pracConfirmText.remove();
 			"font-size":16
 			});
 
-		 set_cond = shuffle([1,2]); // reset conditions for the task
-		 is_quiz = true; //is going to do the instruction quiz
+		 set_cond = [2];  // shuffle([1,2]); // reset conditions for the task
+		 is_quiz  = true; // is going to do the instruction quiz
 		 data_expReset++;
 
 	var backToBegin = function(){
@@ -1364,8 +1364,8 @@ var start_expt = function() {
 		if(is_training){
 			data_nTrialPrac ++;
 			data_condition = 0;
-			data_nCond=0;
-			data_nBlock = 0;
+			data_nCond     = 0;
+			data_nBlock    = 0;
 
 			if(data_nTrialPrac > nTrialsPrac){ //when finish practice trials
 
