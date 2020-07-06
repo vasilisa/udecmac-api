@@ -7,12 +7,14 @@ from models.participants_question_data import ParticipantsQuestionData
 # from models.task import Task
 from models.test import Test
 
+from models.igtask import Igtask
+
 
 
 __all__ = (
     'ApiErrors',
     'BaseObject',
     'ParticipantsQuestionData',
-#    'Task', 
+    'Igtask', 
     'Test'  
 )

@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html>
+<link rel="shortcut icon" href="static/images/flavicon.ico">
+<link rel=stylesheet href="static/questTask.css/" type="text/css" media="screen">
+<head>
+	<title>End of first game</title>
+</head>
+
+<body>
+	<div style="text-align: center; font-size: 16pt" id="thanks">
+		<h1>Thank you again for your time!</h1>
+
+		<div id="debriefingtext" style="text-align: center; font-size: 16pt">
+		<center>
+
+			<p></p>Please, press the button 'CONTINUE' below to proceed to the second part of the study.</p>
+
+			<p> Press 'leave this page' if prompted by your browser. Thank you!</p>
+
+		</center>
+		<div>
+		<p></p>	
+		<center>
+		<div id="nextButton">
+  			<button type="button" class="continueButton" style="cursor:pointer;width: 120px;height: 40px;margin-bottom: 20px;font-size:14pt; " id="continue">CONTINUE</button>
+		 </div>
+    	</center>
+		</div>
+	</div>
+</body>
+
+</html>
+
+
+
+<script  type="text/javascript">
+
+	function parseURL(url) {
+    		var parser = document.createElement('a'),
+        	searchObject = {},
+        	queries, split, i;
+    		// Let the browser do the work
+    		parser.href = url;
+    		// Convert query string to object
+    		queries = parser.search.replace(/^\?/, '').split('&');
+    		for( i = 0; i < queries.length; i++ ) {
+        		split = queries[i].split('=');
+        		searchObject[split[0]] = split[1];
+    		}
+    	return {
+        	protocol: parser.protocol,
+        	host: parser.host,
+        	hostname: parser.hostname,
+        	port: parser.port,
+        	pathname: parser.pathname,
+        	search: parser.search,
+        	searchObject: searchObject,
+        	hash: parser.hash
+    	};
+		}
+
+		var url = parseURL(window.location.href); // full url = window.location.href
+
+		// Subject info: to propagate later 
+		var participant_info            = {}
+        // participant_info.study_id       = url.searchObject['study_id'];
+
+        participant_info.prolific_id    = url.searchObject['prolific_id'];
+        participant_info.participant_id = url.searchObject['participant_id'];
+        
+        
+		console.log('Participant INFO:',participant_info)
+        console.log('Prolific_id:',participant_info.prolific_id)
+		console.log('Participant_id:',participant_info.participant_id)
+
+
+        document.getElementById("continue").onclick = function () {
+	       	// location.href =  "http://localhost:3000/Igtask/?prolific_id="+participant_info.prolific_id + '&participant_id='+participant_info.participant_id;
+            location.href =  "https://udecmac-webapp.osc-fr1.scalingo.io./Igtask/?prolific_id="+participant_info.prolific_id + '&participant_id='+participant_info.participant_id;
+      
+      
+        	};
+    </script>
