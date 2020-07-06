@@ -357,7 +357,7 @@ var saveFeedback = function(){
 
 // Saving the feedback 
 var toRavens = function(){
-    showpage('payment');
+    showpage('nextgame');
     var endTime = new Date().toISOString().substr(0, 19);
   
    console.log(feedbackDatastring);
@@ -385,7 +385,7 @@ var pagenames = [
                  "test",
                  "q_exp",
                  "feedback",
-                 "payment"
+                 "nextgame"
                 ];
 
 /************************
@@ -537,7 +537,7 @@ var ExptPhase = function() {
     // THIS IS TO CALCULATE CPP AND PRESET PARTICLE LOCATION (IN DEGREES) FOR STABLE AND VOLATILE BLOCKS
  		var nCond          = set_cond.length; // length is 2 
     var nTrialsPerCond = 2;//DEBUG ORIG = 200
-		var nTrialsPrac    = 1;//DEBUG ORIG = 10
+		var nTrialsPrac    = 2;//DEBUG ORIG = 10
 		var nTrialsTotal   = nTrialsPerCond*nCond; // 2
 		var nBlocks        = 4;// DEBUG ORIG = 4 
 		var nTrialsPerBlock= Math.floor(nTrialsTotal/nBlocks); //this has to be divisible by nBlocks
