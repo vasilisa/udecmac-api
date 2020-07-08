@@ -6,7 +6,6 @@ from models.base_object import BaseObject
 from models.participants_question_data import ParticipantsQuestionData
 from models.test import Test
 from models.igtask import Igtask
-from models.attempts import Attempts
 
 __all__ = (
     'ApiErrors',
@@ -14,5 +13,4 @@ __all__ = (
     'ParticipantsQuestionData',
     'Igtask', 
     'Test',
-    'Attempts'  
 )
