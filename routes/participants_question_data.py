@@ -11,6 +11,7 @@ import numpy as np
 from sqlalchemy.sql.expression import func
 
 
+
 @app.route("/participants_question_data/last_participant_id", methods=["GET"])
 def get_last_participant_id():
 
@@ -38,8 +39,9 @@ def create_question_participant(participant_id,block_id,prolific_id):
      participant.block_name      = str(content['block_name'])  
      participant.question_ids    = str(content['question_ids'])
      participant.answers         = str(content['answers'])
-     participant.date            = content['date']
-     participant.datetime        = datetime.now()
+     participant.beginexp        = content['beginexp']
+     participant.endexp          = content['endexp']
+     participant.datetime        = content['date_time'] # the global beginning of the study for this participant 
      participant.completed       = content['survey_completed'] 
 
      BaseObject.check_and_save(participant)
@@ -82,9 +84,6 @@ def get_participant_question_data(participant_id,block_id):
     arr_completed           = block.get_survey_completed()[0].replace('  ',' ')
     result['completed']     = arr_completed
     
-    arr_date                = block.get_date()
-    result['date']          = arr_date
-
     arr_datetime            = block.get_datetime()
     result['datetime']      = arr_datetime
 

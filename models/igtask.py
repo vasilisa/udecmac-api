@@ -15,12 +15,18 @@ class Igtask(BaseObject, Model):
     prolific_id     = Column(String(128)) 
     study_id        = Column(String(128)) # STUDY ID from PROLIFIC 
     longit_id       = Column(Integer, nullable=True) # the longitudinal time stamp: 1 (first), 2(second) etc repetition of the questionnaires to the SAME users 
-    codeversion     = Column(String(128))
     block_number    = Column(Integer, nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
-    beginexp        = Column(DateTime, nullable=True) # begin 
-    endexp          = Column(DateTime, nullable=True)
+    beginexp        = Column(VARCHAR(length=100), nullable=True) # begin 
+    endexp          = Column(VARCHAR(length=100), nullable=True)
     completed       = Column(VARCHAR(length=100), nullable=False) # whether the survey has been completed, uncompleted or "aborted"
-    feedback        = Column(Text) # feedback for the  task
+    chosen          = Column(Text(length=10000), nullable=False)     
+    sequence        = Column(Text(length=10000), nullable=False) 
+    correct         = Column(Text(length=10000), nullable=False)
+    opened          = Column(Text(length=10000), nullable=False)
+    outcomes        = Column(Text(length=10000), nullable=False)
+
+
+    
 
     def get_id(self):
         return str(self.id)
@@ -48,9 +54,18 @@ class Igtask(BaseObject, Model):
 
     def get_endexpe(self): 
         return str(self.endexp)
- 
+
+    def get_chosen(self): 
+        return str(self.chosen)
+
+    def get_sequence(self): 
+        return str(self.sequence)
+
+    def get_correct(self): 
+        return str(self.correct)
+
     def errors(self):
-        errors = super(ParticipantsQuestionData, self).errors()
+        errors = super(Igtask, self).errors()
         return errors
  
 
