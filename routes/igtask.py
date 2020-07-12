@@ -18,14 +18,20 @@ def create_igt_participant(participant_id,block_id,prolific_id):
      participant.longit_id       = 2
      participant.study_id        = 'COVID-T2' 
      
-     participant.chosen     = str(content['chosen'])
-     participant.correct    = str(content['correct'])
-     participant.sequence   = str(content['sequence'])
-     participant.opened     = str(content['opened'])
-     participant.completed  = str(content['completed']) # could take up three values: "no" for the all but the last pushed block, 
-     participant.beginexp   = str(content['beginexp']) # could take up three values: "no" for the all but the last pushed block, 
-     participant.endexp     = str(content['endexp']) # could take up three values: "no" for the all but the last pushed block, 
-     participant.outcomes   = str(content['outcomes']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.chosen          = str(content['chosen'])
+     participant.correct         = str(content['correct'])
+     participant.sequence        = str(content['sequence'])
+     participant.opened          = str(content['opened'])
+     participant.completed       = str(content['completed']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.beginexp        = str(content['beginexp']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.endexp          = str(content['endexp']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.outcomes        = str(content['outcomes']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.click_rt        = str(content['click_rt']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.confidence      = str(content['confidence']) # could take up three values: "no" for the all but the last pushed block, 
+     participant.rt_confidence   = str(content['rt_confidence'])
+     participant.confidence_init = str(content['confidence_init'])
+     
+     
      
      BaseObject.check_and_save(participant)
 

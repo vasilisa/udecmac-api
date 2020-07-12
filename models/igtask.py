@@ -24,9 +24,11 @@ class Igtask(BaseObject, Model):
     correct         = Column(Text(length=10000), nullable=False)
     opened          = Column(Text(length=10000), nullable=False)
     outcomes        = Column(Text(length=10000), nullable=False)
-
-
-    
+    click_rt        = Column(Text(length=10000), nullable=False)
+    confidence      = Column(Text(length=10000), nullable=False)  
+    rt_confidence   = Column(Text(length=10000), nullable=False)  
+    confidence_init = Column(Text(length=10000), nullable=False)  
+      
 
     def get_id(self):
         return str(self.id)
@@ -63,6 +65,9 @@ class Igtask(BaseObject, Model):
 
     def get_correct(self): 
         return str(self.correct)
+
+    def get_click_rt(self): 
+        return str(self.click_rt)
 
     def errors(self):
         errors = super(Igtask, self).errors()
