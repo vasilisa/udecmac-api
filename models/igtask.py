@@ -21,8 +21,9 @@ class Igtask(BaseObject, Model):
     completed       = Column(VARCHAR(length=100), nullable=False) # whether the survey has been completed, uncompleted or "aborted"
     chosen          = Column(Text(length=10000), nullable=False)     
     sequence        = Column(Text(length=10000), nullable=False) 
-    correct         = Column(Text(length=10000), nullable=False)
-    opened          = Column(Text(length=10000), nullable=False)
+    correct          = Column(Text(length=10000), nullable=False)
+    opened           = Column(Text(length=10000), nullable=False)
+    opened_positions = Column(Text(length=10000), nullable=False) # spatial position of an opened square on the board between 1 and 25 
     outcomes        = Column(Text(length=10000), nullable=False)
     click_rt        = Column(Text(length=10000), nullable=False)
     confidence      = Column(Text(length=10000), nullable=False)  

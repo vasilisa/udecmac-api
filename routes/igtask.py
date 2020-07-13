@@ -29,8 +29,8 @@ def create_igt_participant(participant_id,block_id,prolific_id):
      participant.click_rt        = str(content['click_rt']) # could take up three values: "no" for the all but the last pushed block, 
      participant.confidence      = str(content['confidence']) # could take up three values: "no" for the all but the last pushed block, 
      participant.rt_confidence   = str(content['rt_confidence'])
-     participant.confidence_init = str(content['confidence_init'])
-     
+     participant.confidence_init  = str(content['confidence_init'])
+     participant.opened_positions = str(content['opened_pos'])
      
      
      BaseObject.check_and_save(participant)
